@@ -1,0 +1,5 @@
+report_id,space_id,instante,ocupacion,ruido_db,building,space_name,capacidad
+R002,A101,2026-10-20 09:10:00,0.8,50.0,A,Biblioteca norte,30
+R003,A102,2026-10-20 09:05:00,0.2,20.0,A,Sala silenciosa,20
+R006,B201,2026-10-20 09:18:00,0.5,10.0,B,Aula de estudio,15
+R005,C101,2026-10-20 09:15:00,0.9,70.0,C,Zona de estudio,40

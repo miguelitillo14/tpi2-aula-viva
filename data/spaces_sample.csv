@@ -1,0 +1,5 @@
+space_id,building,space_name,capacity,active
+A101,A,Biblioteca norte,30,true
+A102,A,Sala silenciosa,20,true
+B201,B,Aula de estudio,15,true
+C101,C,Zona de estudio,40,true

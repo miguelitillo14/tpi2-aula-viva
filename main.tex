@@ -1,0 +1,313 @@
+% ============================================================================
+% TEMPLATE PARA TRABAJOS PRÁCTICOS INDIVIDUALES (TPI)
+% Asignatura: Ampliación de Bases de Datos
+% Curso 2026/2027 - Universidad Loyola Andalucía
+%
+% INSTRUCCIONES PARA EL ESTUDIANTE
+% 1. Completa los datos de la portada.
+% 2. Adapta los títulos de las secciones si la naturaleza del TPI lo requiere.
+% 3. No elimines la declaración de uso de IA.
+% 4. Entrega el documento final en PDF a través de Moodle.
+% 5. Guarda este fichero .tex y el logo_uloyola.png en la misma carpeta.
+% ============================================================================
+
+\documentclass[a4paper,12pt]{article}
+
+% ---------------------------------------------------------------------------
+% Codificación, idioma y tipografía
+% ---------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------------------------------------------------------------------------
+% Página y espaciado
+% ---------------------------------------------------------------------------
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.7cm,right=2.7cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.7em}
+
+% ---------------------------------------------------------------------------
+% Colores e identidad visual
+% ---------------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{LoyolaBlue}{HTML}{082B66}
+\definecolor{LoyolaCyan}{HTML}{5CC8DF}
+\definecolor{SoftBlue}{HTML}{EEF5FA}
+\definecolor{SoftGray}{HTML}{F5F6F7}
+\definecolor{TextGray}{HTML}{374151}
+
+% ---------------------------------------------------------------------------
+% Imágenes, tablas y listas
+% ---------------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% ---------------------------------------------------------------------------
+% Código fuente
+% ---------------------------------------------------------------------------
+\usepackage{listings}
+\lstdefinestyle{codigo}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{SoftGray},
+  frame=single,
+  rulecolor=\color{LoyolaBlue!35},
+  numbers=left,
+  numberstyle=\tiny\color{TextGray},
+  numbersep=8pt,
+  breaklines=true,
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b,
+  keywordstyle=\color{LoyolaBlue}\bfseries,
+  commentstyle=\color{green!45!black},
+  stringstyle=\color{orange!60!black}
+}
+\lstset{style=codigo}
+
+% ---------------------------------------------------------------------------
+% Matemáticas y enlaces
+% ---------------------------------------------------------------------------
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=LoyolaBlue,
+  urlcolor=LoyolaBlue,
+  citecolor=LoyolaBlue,
+  pdftitle={TPI 2: Aula Viva y Spark SQL},
+  pdfauthor={Miguel Garcia Galan}
+}
+
+% ---------------------------------------------------------------------------
+% Cabecera y pie de página
+% ---------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{LoyolaBlue}{Ampliación de Bases de Datos}}
+\fancyhead[R]{\small\textcolor{TextGray}{Curso 2026/2027}}
+\fancyfoot[L]{\small Universidad Loyola Andalucía}
+\fancyfoot[R]{\small Página \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{LoyolaCyan}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+% ---------------------------------------------------------------------------
+% Estilo de secciones
+% ---------------------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\Large\bfseries\color{LoyolaBlue}}
+  {\thesection.}{0.6em}{}
+\titleformat{\subsection}
+  {\large\bfseries\color{LoyolaBlue}}
+  {\thesubsection.}{0.6em}{}
+
+% ---------------------------------------------------------------------------
+% Caja de indicaciones
+% ---------------------------------------------------------------------------
+\usepackage[most]{tcolorbox}
+\newtcolorbox{indicacion}{
+  colback=SoftBlue,
+  colframe=LoyolaCyan,
+  boxrule=0.8pt,
+  arc=2mm,
+  left=3mm,right=3mm,top=2mm,bottom=2mm
+}
+
+% ============================================================================
+% DATOS DEL TRABAJO - COMPLETAR POR EL ESTUDIANTE
+% ============================================================================
+\newcommand{\TPINumero}{TPI 2}
+\newcommand{\TPITitulo}{Aula Viva: análisis de ocupación y ruido con Spark SQL}
+\newcommand{\Estudiante}{Miguel Garcia Galan}
+\newcommand{\FechaEntrega}{27/10/2026}
+\newcommand{\Profesor}{Dr. Anier Soria Lorente}
+
+\begin{document}
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{center}
+    \includegraphics[width=0.72\textwidth]{logo_uloyola.png}
+    \vspace{1.2cm}
+    {\Large\bfseries\color{LoyolaBlue} Ampliación de Bases de Datos\par}
+    \vspace{0.35cm}
+    {\large Grado en Ingeniería del Software\par}
+    {\large Curso académico 2026/2027\par}
+    \vspace{1.5cm}
+    \colorbox{SoftBlue}{\parbox{0.88\textwidth}{\centering\vspace{0.6cm}
+      {\LARGE\bfseries\color{LoyolaBlue}\TPINumero\par}
+      \vspace{0.35cm}
+      {\Large\bfseries\TPITitulo\par}
+      \vspace{0.6cm}}}
+    \vfill
+    \begin{tabular}{>{\bfseries}p{4.0cm} p{9.2cm}}
+      Estudiante: & \Estudiante \\
+      Profesor: & \Profesor \\
+      Fecha: & \FechaEntrega \\
+    \end{tabular}
+    \vfill
+    {\small\color{TextGray} Universidad Loyola Andalucía}
+  \end{center}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Problema real y contexto}
+Aula Viva es la propuesta de aplicación web para consultar espacios de estudio del campus y comunicar observaciones recientes sobre ocupación y ruido. La necesidad parte de una situación concreta: un estudiante que llega al campus no dispone necesariamente de información actualizada para decidir qué espacio está libre y es adecuado para estudiar. La propuesta inicial delimita un campus, informes manuales y consulta de espacios; no contempla por ahora sensores automáticos ni otros campus.
+
+El trabajo aborda una fase analítica de ese problema. Aula Viva produce informes de ocupación y ruido, mientras que el sistema de información institucional mantiene el catálogo autorizado de espacios, edificios, capacidades y estado de actividad. Consultar cada fuente por separado dificulta ofrecer un estado contextualizado: un informe reciente debe vincularse con el espacio correcto y su capacidad para poder interpretarse.
+
+No se dispone de acceso a un sistema empresarial real ni de informes reales del campus. Por ello, el prototipo utiliza dos CSV sintéticos, identificados expresamente como datos de demostración. El problema y la arquitectura son los de Aula Viva; las cifras que aparecen en la memoria no se presentan como mediciones del campus.
+
+\section{Necesidad relacionada con los datos y objetivos}
+\subsection{Necesidad identificada}
+Se necesita integrar datos operativos heterogéneos: el catálogo relativamente estable del campus y los informes que cambian a lo largo del día. El procesamiento debe validar identificadores y rangos, resolver varios informes del mismo espacio y obtener un estado reciente listo para consulta desde la aplicación. Spark SQL permite expresar limpieza, unión y selección de registros mediante operaciones sobre datos estructurados. La integración con el sistema institucional es el límite entre esos datos de negocio y la analítica de Aula Viva.
+
+\subsection{Objetivo general}
+Diseñar e implementar un prototipo reproducible con Spark SQL que combine un catálogo de espacios y observaciones de ocupación y ruido, genere el último estado válido por espacio y un resumen por edificio, y defina una vía segura de integración con el sistema de información del campus.
+
+\subsection{Objetivos específicos}
+\begin{itemize}[leftmargin=1.2cm]
+  \item Representar como fuentes separadas el catálogo institucional y los informes de Aula Viva.
+  \item Aplicar validaciones de clave, fecha y rangos antes de agregar los informes.
+  \item Usar una consulta SQL con ventana para seleccionar el informe más reciente de cada espacio.
+  \item Obtener un resumen por edificio y definir cómo consumirlo desde la aplicación.
+  \item Delimitar qué se ha ejecutado, qué es una salida esperada y qué requeriría acceso a sistemas reales.
+\end{itemize}
+
+\section{Conceptos y tecnologías aplicadas}
+\subsection{Spark SQL para datos estructurados}
+Spark SQL es el componente de Apache Spark para procesar datos estructurados mediante SQL y DataFrames. En este caso, el catálogo y los informes se registran como vistas temporales y una consulta SQL los limpia, combina y ordena. El propósito no es afirmar que un conjunto pequeño necesite un clúster, sino aplicar el modelo de procesamiento distribuible a una tarea que podría crecer cuando se reciban observaciones de múltiples espacios y periodos.
+
+\subsection{Integración con el sistema de información empresarial}
+El sistema institucional es la fuente maestra de los espacios y sus capacidades; Aula Viva es la fuente de informes comunitarios. La integración propuesta es de lectura: Spark consume una exportación controlada o una réplica mediante JDBC, combina las fuentes y publica una salida analítica para la aplicación. No se escriben observaciones en el sistema administrativo ni se reemplaza su catálogo. Como no se proporcionaron conexión, credenciales ni autorización, el prototipo simula el origen JDBC con el CSV \texttt{spaces\_sample.csv}.
+
+\subsection{Calidad, trazabilidad y escala}
+La clave \texttt{space\_id} relaciona las dos fuentes. El \texttt{INNER JOIN} descarta observaciones sin espacio correspondiente; las condiciones de validación rechazan fechas ilegibles, ocupaciones fuera de $[0,1]$ y ruido fuera del intervalo definido para el prototipo. Una función de ventana elige un único informe vigente por espacio. La misma lógica deja preparada una salida separada para el resumen, sin alterar el dato de origen.
+
+\section{Desarrollo del trabajo}
+\subsection{Diseño o planteamiento de la solución}
+El flujo tiene cuatro etapas: (1) leer un extracto del catálogo institucional y los informes de Aula Viva; (2) validarlos y relacionarlos por identificador; (3) seleccionar el último informe válido de cada espacio y calcular el resumen por edificio; y (4) publicar CSV de salida para que un servicio de lectura de la aplicación los consuma. La primera versión corre en modo local con Spark; el modo de ejecución podría cambiarse a un clúster sin modificar la consulta de negocio.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{lXX}\toprule
+Fuente o componente & Datos & Responsabilidad en el flujo\\\midrule
+Sistema institucional & Identificador, edificio, nombre, capacidad y estado & Catálogo maestro de espacios; solo lectura\\
+Aula Viva & Identificador del informe, espacio, fecha, ocupación y ruido & Observaciones comunitarias con marca temporal\\
+Spark SQL & Vistas estructuradas y consulta con unión y ventana & Validación, integración y agregación\\
+Aplicación Aula Viva & CSV analítico de salida en el prototipo & Mostrar estado reciente sin consultar cada origen por separado\\\bottomrule
+\end{tabularx}\end{center}
+
+\subsection{Implementación o procedimiento}
+El proyecto contiene \texttt{scripts/run\_spark\_sql.py}, dos CSV sintéticos y los comandos de instalación en \texttt{README.md}. El script crea una sesión Spark local, carga los ficheros como vistas SQL, descarta filas que no pueden vincularse con el catálogo o no superan las validaciones y conserva el último informe por espacio. Después calcula la ocupación media del último estado por edificio con Spark SQL. Dado que la muestra es pequeña, el script recoge estas tablas y Python las guarda en dos CSV locales; así se evita exigir \texttt{winutils.exe} en Windows. Para datos de gran volumen, la salida debe dirigirse a almacenamiento distribuido o a un sistema de información mediante un conector adecuado.
+
+La consulta principal usa \texttt{ROW\_NUMBER() OVER (PARTITION BY space\_id ORDER BY instante DESC)}. El orden secundario por identificador del informe hace determinista la selección cuando dos informes comparten marca temporal. Para conectar un sistema compatible real, se sustituiría la lectura de \texttt{spaces\_sample.csv} por el conector JDBC de Spark, con el controlador apropiado y secretos fuera del código. La salida de esta prueba no se escribe en el sistema institucional.
+
+\begin{lstlisting}[language=SQL,caption={Selección del último informe válido y unión con el catálogo}]
+WITH validos AS (
+  SELECT r.report_id, r.space_id,
+         to_timestamp(r.reported_at, 'yyyy-MM-dd HH:mm:ss') AS instante,
+         CAST(r.occupancy_ratio AS DOUBLE) AS ocupacion,
+         CAST(r.noise_db AS DOUBLE) AS ruido_db,
+         s.building, s.space_name, CAST(s.capacity AS INT) AS capacidad,
+         ROW_NUMBER() OVER (
+           PARTITION BY r.space_id
+           ORDER BY to_timestamp(r.reported_at, 'yyyy-MM-dd HH:mm:ss') DESC,
+                    r.report_id DESC
+         ) AS orden
+  FROM informes_brutos r
+  INNER JOIN catalogo_espacios s ON r.space_id = s.space_id
+  WHERE s.active = 'true'
+    AND to_timestamp(r.reported_at, 'yyyy-MM-dd HH:mm:ss') IS NOT NULL
+    AND CAST(r.occupancy_ratio AS DOUBLE) BETWEEN 0.0 AND 1.0
+    AND CAST(r.noise_db AS DOUBLE) BETWEEN 0.0 AND 120.0
+)
+SELECT report_id, space_id, instante, ocupacion, ruido_db,
+       building, space_name, capacidad
+FROM validos WHERE orden = 1;
+\end{lstlisting}
+
+\section{Resultados obtenidos}
+Los ficheros de demostración contienen cuatro espacios y siete informes. Seis informes usan un identificador presente en el catálogo y uno (\texttt{R007}, espacio \texttt{X999}) no tiene correspondencia. Por construcción, la unión interna debe conservar seis informes antes de elegir el más reciente y la salida final debe contener cuatro espacios. La tabla muestra la salida esperada calculada directamente a partir del CSV; no es una salida obtenida ejecutando Spark.
+
+\begin{center}\small
+\begin{tabular}{llll}\toprule
+Espacio & Último informe de muestra & Ocupación & Edificio\\\midrule
+A101 & R002, 09:10 & 0,80 & A\\
+A102 & R003, 09:05 & 0,20 & A\\
+B201 & R006, 09:18 & 0,50 & B\\
+C101 & R005, 09:15 & 0,90 & C\\\bottomrule
+\end{tabular}\end{center}
+
+La ejecución local de Spark SQL terminó correctamente y produjo los cuatro estados mostrados y los resúmenes: edificio A, media 0,50 con dos espacios; edificio B, media 0,50 con un espacio; edificio C, media 0,90 con un espacio. Se comprobaron los ficheros \texttt{salida/estado\_espacios.csv} y \texttt{salida/resumen\_edificios.csv}; contienen cuatro filas de estado y tres filas de resumen, respectivamente. El informe de espacio inexistente quedó excluido por la unión con el catálogo. Los avisos de Hadoop relativos a \texttt{winutils.exe} y a la biblioteca nativa aparecieron como advertencias, pero no impidieron ejecutar la consulta ni guardar los resultados.
+
+\section{Análisis e interpretación de los resultados}
+La salida de referencia muestra cómo la integración añade contexto al informe: el último nivel de ocupación se puede asociar con edificio, nombre y capacidad del espacio. La observación R007 se excluye porque su clave no aparece en el catálogo, evitando que un espacio desconocido entre en el resumen. Para A101, R002 sustituye al informe anterior R001 por ser más reciente. El promedio por edificio describe únicamente los cuatro últimos informes sintéticos del ejemplo; no es un indicador representativo de ocupación real.
+
+El prototipo no demuestra rendimiento ni escalabilidad: los siete registros son intencionadamente pequeños y adecuados para revisar la lógica. Tampoco resuelve informes caducados, usuarios malintencionados, valores sesgados, conflictos simultáneos o una política institucional de anonimización. Antes de mostrar datos a estudiantes habría que definir antigüedad máxima, controles de frecuencia, consentimiento, granularidad y mensaje de incertidumbre.
+
+\section{Decisiones tomadas y justificación}
+\begin{itemize}[leftmargin=1.2cm]
+  \item \textbf{Spark SQL y no un almacén nuevo:} el objetivo del TPI 2 es aplicar el procesamiento estructurado distribuible sobre dos fuentes; Spark se usa como motor de integración analítica.
+  \item \textbf{Lectura del sistema institucional:} el catálogo mantiene su autoridad y se evita que un proceso experimental altere información operativa.
+  \item \textbf{CSV para la prueba local:} no hay acceso autorizado a la base empresarial. El CSV permite reproducir el mismo contrato de datos sin fingir una conexión real.
+  \item \textbf{Identificador estable y ventana:} se relacionan registros por clave, no por nombre; la ventana conserva un solo estado por espacio y una marca temporal.
+  \item \textbf{Ocupación como proporción:} $0$ significa vacío y $1$ capacidad completa, por lo que el rango admite validación simple y facilita comparar espacios de distinto tamaño. El prototipo no estima ocupación a partir de sensores.
+  \item \textbf{No usar cluster para la muestra:} un modo local reduce requisitos y facilita reproducir la lógica. La escala no se puede justificar sin volumen real ni medidas de rendimiento.
+\end{itemize}
+
+\section{Conclusiones y aprendizaje}
+El TPI aplica Spark SQL a una necesidad de Aula Viva: combinar observaciones cambiantes con el catálogo institucional de espacios para obtener un estado reciente y contextualizado. La propuesta de integración separa el sistema maestro del procesamiento analítico, conserva el origen como solo lectura y explicita qué datos se validan.
+
+La ejecución local confirmó que Spark SQL valida y cruza las dos fuentes, selecciona el último informe de cada espacio y genera los dos CSV de salida. El ejemplo demuestra el funcionamiento del flujo, pero usa datos sintéticos: no mide la ocupación real del campus ni permite evaluar rendimiento a gran escala. La conexión con el sistema institucional real queda pendiente de acceso y autorización.
+
+\section{Declaración de uso de inteligencia artificial}
+Se utilizó ChatGPT como apoyo para organizar la memoria, revisar la relación con las orientaciones del TPI 2 y preparar el prototipo PySpark y los datos sintéticos de demostración. El estudiante ejecutó el procedimiento localmente con PySpark y Java y contrastó la salida con las tablas de referencia y los CSV generados. No se han utilizado datos personales ni credenciales reales.
+
+\section{Referencias}
+\begin{thebibliography}{9}
+\bibitem{orientaciones}
+Soria Lorente, A., \textit{Trabajos Prácticos Individuales: Orientaciones para el alumnado, Ampliación de Bases de Datos, curso 2026/2027}, Universidad Loyola Andalucía, apartado 6: TPI 2, Tema 5.
+
+\bibitem{propuesta}
+Garcia Galan, M., \textit{Aula Viva: propuesta inicial del proyecto}, Universidad Loyola Andalucía, 2026. Documento local del proyecto de asignatura.
+
+\bibitem{spark}
+Apache Software Foundation, \textit{Spark SQL, DataFrames and Datasets Guide}. \url{https://spark.apache.org/docs/latest/sql-programming-guide.html}
+
+\bibitem{jdbc}
+Apache Software Foundation, \textit{JDBC To Other Databases}. \url{https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html}
+
+\bibitem{sparkversion}
+Apache Software Foundation, \textit{Spark 3.5.1 Documentation}. \url{https://spark.apache.org/docs/3.5.1/}
+\end{thebibliography}
+
+\appendix
+\section{Reproducción del prototipo}
+Desde PowerShell, situado en la carpeta del proyecto, instalar las dependencias y ejecutar:
+\begin{lstlisting}[language=bash,caption={Preparación y ejecución local}]
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe scripts/run_spark_sql.py --data-dir data --output-dir salida
+\end{lstlisting}
+El entorno requiere Python y una versión compatible de Java. La salida consta de los ficheros \texttt{salida/estado\_espacios.csv} y \texttt{salida/resumen\_edificios.csv}. En una integración real, se sustituye el catálogo CSV por una fuente JDBC autorizada y se configuran las credenciales mediante un gestor de secretos; no se guardan contraseñas en el repositorio.
+
+\section{Alcance de la evidencia}
+Los CSV de entrada son sintéticos. La consulta Spark SQL y la escritura de los ficheros de salida sí se ejecutaron localmente y se verificó su contenido. No se probó un clúster ni hubo conexión al sistema empresarial del campus, por lo que los resultados no son mediciones reales de ocupación.
+\end{document}
