@@ -159,6 +159,7 @@
       Estudiante: & \Estudiante \\
       Profesor: & \Profesor \\
       Fecha: & \FechaEntrega \\
+      Repositorio: & \url{https://github.com/miguelitillo14/tpi2-aula-viva} \\
     \end{tabular}
     \vfill
     {\small\color{TextGray} Universidad Loyola Andalucía}
@@ -244,7 +245,7 @@ FROM validos WHERE orden = 1;
 \end{lstlisting}
 
 \section{Resultados obtenidos}
-Los ficheros de demostración contienen cuatro espacios y siete informes. Seis informes usan un identificador presente en el catálogo y uno (\texttt{R007}, espacio \texttt{X999}) no tiene correspondencia. Por construcción, la unión interna debe conservar seis informes antes de elegir el más reciente y la salida final debe contener cuatro espacios. La tabla muestra la salida esperada calculada directamente a partir del CSV; no es una salida obtenida ejecutando Spark.
+Los ficheros de demostración contienen cuatro espacios y siete informes. Seis informes usan un identificador presente en el catálogo y uno (\texttt{R007}, espacio \texttt{X999}) no tiene correspondencia. Por construcción, la unión interna conserva seis informes antes de elegir el más reciente y la salida final contiene cuatro espacios. La tabla muestra los estados obtenidos al ejecutar el prototipo con Spark SQL.
 
 \begin{center}\small
 \begin{tabular}{llll}\toprule
